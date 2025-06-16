@@ -20,10 +20,10 @@ def equation (a,b,n,c):
             paskal_matrix[coord_y] = old_string
         return paskal_matrix
 
-    def equation_members (a,b,n,d,paskal_matrix): #Просто печатает члены отдельно
-        print('Члены уравнения выглядят следующим образом:')
+    def equation_members (a,b,n,d,paskal_matrix): #Выводит сллагаемы уравнения отдельно
+        print('Слагаемые уравнения выглядят следующим образом:')
         string = (paskal_matrix)[n]  # Идентифицируем строку с нужными коэффицентами
-        string = string[1:n + 2]  # Убираем нули из строки через Срез
+        string = string[1:n + 2]  # Убираем не нужные нули из строки через Срез
         equation_matrix = {}  # Матрица с членами уравнения
         index_in_matrix = 0
 
@@ -38,35 +38,32 @@ def equation (a,b,n,c):
         return equation_matrix
 
 
-    def ident_final_equation (equation_matrix,c): # Получаем итоговое уравнение
+    def ident_final_equation (equation_matrix,c): # Получаем итоговое уравнение конкатынацией
         indexs = equation_matrix.keys()
-        final_equation = '' #Пустая строка
+        final_equation = ''
         print('\nУравнение в развернутом виде имеет вид:')
         for index_in_matrix in indexs:
             local_member = equation_matrix[index_in_matrix]
             final_equation = (final_equation + local_member + ' + ')
-        final_equation = final_equation + '0' #Костыль чтобы завершить левую часть
+        final_equation = final_equation + '0'
         print (final_equation, ' = %s' %(c))  #Подстановка правой части
         return final_equation
 
-    def tvar(final_equation, x):
+    def calculation(final_equation, x):
         result = int(eval(final_equation))
         return result
 
     d = 0  # Переменна для степени свободного члена
     print("""Уравнение выглядит следующим образом:\n( %s * x + %s) ^ %s = %s\n""" % (a, b, n, c))
     paskal_matrix = paskal_triangle(n+1)
-    equation_matrix = (equation_members(a,b,n, d, paskal_matrix))  #Ф
+    equation_matrix = (equation_members(a,b,n, d, paskal_matrix))
     final_equation = ident_final_equation(equation_matrix,c)
 
     for x in range(-100, 100, 1):
-        result = tvar(final_equation, x)
+        result = calculation(final_equation, x)
         if result == c:
             subs.append(x)
     print('\nНатуральные корни ураненения = ',subs)
-
-
-
 
 # print('Формула вида (a * X + b)^n' = c)
 # a = input('Введите а (коэффециент при Х) = ')
@@ -75,8 +72,8 @@ def equation (a,b,n,c):
 # n = input('Введите c (число после =) = ')
 a = 1
 b = 5
-n = 3
-c = 343
+n = 4
+c = 2401
 subs = []
 equation (a,b,n,c)
 

@@ -1,9 +1,8 @@
-# проверка коммитов
 simpls = []
 for a in range(1,50):
     rems = []
     for b in range(a-1,1,-1):
-         c = a%b
+         c = a%b #Получаем остаток от деления
          rems.append(c)
     if 0 not in rems: #Проверяем делилось ли число нацело или нет.
         simpls.append(a)
